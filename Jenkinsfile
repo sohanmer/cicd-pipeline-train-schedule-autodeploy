@@ -42,13 +42,16 @@ pipeline {
                 CANARY_REPLICAS = 1
             }
             steps {
-                kubernetesDeploy(
-                    kubeconfigId: 'k8sconfig',
-                    configs: 'train-schedule-kube-canary.yml',
-                    kubeConfig: [path: '/Users/sohanmer/.jenkins/workspace/.kube/config'],
-                    enableConfigSubstitution: true
-                )
-                // kubernetesDeploy configs: 'train-schedule-kube-canary.yml', kubeconfigId: 'k8sconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+                // kubernetesDeploy(
+                //     kubeconfigId: 'k8sconfig',
+                //     configs: 'train-schedule-kube-canary.yml',
+                //     kubeConfig: [path: '/Users/sohanmer/.jenkins/workspace/.kube/config'],
+                //     enableConfigSubstitution: true
+                // )
+                withEnv(["KUBECONFIG=/Users/sohanmer/.jenkins/workspace/.kube/config"]) {
+                    sh "kubectl apply -f train-schedule-kube-canary.yml"
+                }
+
             }
         }
         stage('DeployToProduction') {
