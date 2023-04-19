@@ -62,19 +62,21 @@ pipeline {
                 CANARY_REPLICAS = 0
             }
             steps {
-                input 'Deploy to Production?'
-                milestone(1)
-                kubernetesDeploy(
-                    kubeconfigId: 'k8sconfig',
-                    configs: 'train-schedule-kube-canary.yml',
-                    kubeConfig: [path: '/Users/sohanmer/.jenkins/workspace/.kube/config'],
-                    enableConfigSubstitution: true
-                )
-                kubernetesDeploy(
-                    kubeconfigId: 'k8sconfig',
-                    configs: 'train-schedule-kube.yml',
-                    enableConfigSubstitution: true
-                )
+                // input 'Deploy to Production?'
+                // milestone(1)
+                // kubernetesDeploy(
+                //     kubeconfigId: 'k8sconfig',
+                //     configs: 'train-schedule-kube-canary.yml',
+                //     kubeConfig: [path: '/Users/sohanmer/.jenkins/workspace/.kube/config'],
+                //     enableConfigSubstitution: true
+                // )
+                // kubernetesDeploy(
+                //     kubeconfigId: 'k8sconfig',
+                //     configs: 'train-schedule-kube.yml',
+                //     enableConfigSubstitution: true
+                // )
+                sh "/opt/homebrew/bin/kubectl apply -f train-schedule-kube-canary.yml"
+                sh "/opt/homebrew/bin/kubectl apply -f train-schedule-kube.yml"
             }
         }
     }
