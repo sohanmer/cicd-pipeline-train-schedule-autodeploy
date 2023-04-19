@@ -63,6 +63,7 @@ pipeline {
                 kubernetesDeploy(
                     kubeconfigId: 'k8sconfig',
                     configs: 'train-schedule-kube-canary.yml',
+                    kubeConfig: [path: '/Users/sohanmer/.jenkins/workspace/.kube/config'],
                     enableConfigSubstitution: true
                 )
                 kubernetesDeploy(
