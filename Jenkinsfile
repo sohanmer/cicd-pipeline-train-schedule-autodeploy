@@ -17,7 +17,7 @@ pipeline {
                 branch 'master'
             }
             steps { 
-		            sh 'docker build -t sohanmer/train-schedule .'
+		            sh '/usr/local/bin/docker build -t sohanmer/train-schedule .'
                 }
         }
         stage('Push Docker Image') {
@@ -31,7 +31,7 @@ pipeline {
                 //         app.push("latest")
                 //     }
                 // }
-                sh 'docker push sohanmer/train-schedule-autodeploy'
+                sh '/usr/local/bin/docker push sohanmer/train-schedule-autodeploy'
             }
         }
         stage('CanaryDeploy') {
