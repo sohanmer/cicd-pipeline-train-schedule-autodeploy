@@ -34,7 +34,6 @@ pipeline {
                     sh 'docker push sohanmer/train-schedule-autodeploy'
                 }
             }
-        }
         stage('CanaryDeploy') {
             when {
                 branch 'master'
