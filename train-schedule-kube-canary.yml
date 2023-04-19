@@ -10,7 +10,7 @@ spec:
   ports:
   - protocol: TCP
     port: 8080
-    nodePort: 8081
+    nodePort: 30000
 
 ---
 
@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - name: train-schedule
-        image: sohanmer/train-schedule-autodeploy:latest
+        image: sohanmer/train-schedule-autodeploy
         ports:
         - containerPort: 8080
         livenessProbe:
