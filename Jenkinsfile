@@ -19,7 +19,6 @@ pipeline {
             steps { 
 		            sh 'docker build -t sohanmer/train-schedule .'
                 }
-            }
         }
         stage('Push Docker Image') {
             when {
@@ -73,3 +72,4 @@ pipeline {
             }
         }
     }
+}
