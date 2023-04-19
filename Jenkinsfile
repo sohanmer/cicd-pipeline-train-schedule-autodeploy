@@ -43,10 +43,11 @@ pipeline {
             }
             steps {
                 kubernetesDeploy(
-                    k8sconfigId: 'k8sconfig',
+                    kubeconfigId: 'k8sconfig',
                     configs: 'train-schedule-kube-canary.yml',
                     enableConfigSubstitution: true
                 )
+                // kubernetesDeploy configs: 'train-schedule-kube-canary.yml', kubeconfigId: 'k8sconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
             }
         }
         stage('DeployToProduction') {
@@ -60,12 +61,12 @@ pipeline {
                 input 'Deploy to Production?'
                 milestone(1)
                 kubernetesDeploy(
-                    k8sconfigId: 'k8sconfig',
+                    kubeconfigId: 'k8sconfig',
                     configs: 'train-schedule-kube-canary.yml',
                     enableConfigSubstitution: true
                 )
                 kubernetesDeploy(
-                    k8sconfigId: 'k8sconfig',
+                    kubeconfigId: 'k8sconfig',
                     configs: 'train-schedule-kube.yml',
                     enableConfigSubstitution: true
                 )
