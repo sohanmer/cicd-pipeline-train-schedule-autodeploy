@@ -49,7 +49,7 @@ pipeline {
                 //     enableConfigSubstitution: true
                 // )
                 withEnv(["KUBECONFIG=/Users/sohanmer/.jenkins/workspace/.kube/config"]) {
-                    sh "kubectl apply -f train-schedule-kube-canary.yml"
+                    sh "/opt/homebrew/bin/kubectl apply -f train-schedule-kube-canary.yml"
                 }
 
             }
