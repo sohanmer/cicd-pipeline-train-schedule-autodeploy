@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         //be sure to replace "bhavukm" with your own Docker Hub username
-        DOCKER_IMAGE_NAME = "sohanmer/train-schedule"
+        DOCKER_IMAGE_NAME = "sohanmer/train-schedule-autodeploy"
     }
     stages {
         stage('Build') {
@@ -22,6 +22,7 @@ pipeline {
                     app.inside {
                         sh 'echo Hello, World!'
                     }
+		//sh 'docker build -t sohanmer/train-schedule .'
                 }
             }
         }
